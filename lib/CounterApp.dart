@@ -1,4 +1,6 @@
+import 'package:bloctrainapp/Bloc/CounterBloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CounterApp extends StatefulWidget {
   const CounterApp({super.key});
@@ -26,11 +28,12 @@ class _CounterAppState extends State<CounterApp> {
               height: 20,
             ),
             Center(
-              child: Text('Null',
+                child: BlocBuilder<CounterBloc, CounterAppState>(
+              builder: (context, state) => Text(state.value.toString(),
                   style: TextStyle(
                       fontSize: size.height / 26, fontWeight: FontWeight.w600)),
-            ),
-            SizedBox(
+            )),
+            const SizedBox(
               height: 20,
             ),
             Row(
@@ -38,6 +41,7 @@ class _CounterAppState extends State<CounterApp> {
               children: [
                 ElevatedButton(
                     onPressed: () {
+                      BlocProvider.of<CounterBloc>(context).add(PlusEvent());
                       print('plus clicked!!');
                     },
                     child: Text(
@@ -46,6 +50,7 @@ class _CounterAppState extends State<CounterApp> {
                     )),
                 ElevatedButton(
                     onPressed: () {
+                      BlocProvider.of<CounterBloc>(context).add(MinusEvent());
                       print('minus clicked!!');
                     },
                     child: Text(
