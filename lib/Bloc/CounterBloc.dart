@@ -1,10 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+//State of App
 class CounterAppState {
   final int value;
   CounterAppState(this.value);
 }
 
+//Abstract Classes
 abstract class CounterAppEvent {}
 
 class PlusEvent extends CounterAppEvent {}
